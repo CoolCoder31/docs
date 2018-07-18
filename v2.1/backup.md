@@ -79,7 +79,7 @@ The `BACKUP` process minimizes its impact to the cluster's performance by distri
 
 For best performance, we also recommend always starting backups with a specific [timestamp](timestamp.html) at least 10 seconds in the past. For example:
 
-~~~ sql
+~~~ sql?nofmt
 > BACKUP...AS OF SYSTEM TIME '-10s';
 ~~~
 
@@ -138,7 +138,7 @@ Per our guidance in the [Performance](#performance) section, we recommend starti
 ### Backup a single table or view
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > BACKUP bank.customers \
 TO 'gs://acme-co-backup/database-bank-2017-03-27-weekly' \
 AS OF SYSTEM TIME '-10s';
@@ -147,7 +147,7 @@ AS OF SYSTEM TIME '-10s';
 ### Backup multiple tables
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > BACKUP bank.customers, bank.accounts \
 TO 'gs://acme-co-backup/database-bank-2017-03-27-weekly' \
 AS OF SYSTEM TIME '-10s';
@@ -156,7 +156,7 @@ AS OF SYSTEM TIME '-10s';
 ### Backup an entire database
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > BACKUP DATABASE bank \
 TO 'gs://acme-co-backup/database-bank-2017-03-27-weekly' \
 AS OF SYSTEM TIME '-10s';
@@ -165,7 +165,7 @@ AS OF SYSTEM TIME '-10s';
 ### Backup with revision history
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > BACKUP DATABASE bank \
 TO 'gs://acme-co-backup/database-bank-2017-03-27-weekly' \
 AS OF SYSTEM TIME '-10s' WITH revision_history;
@@ -176,7 +176,7 @@ AS OF SYSTEM TIME '-10s' WITH revision_history;
 Incremental backups must be based off of full backups you've already created.
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > BACKUP DATABASE bank \
 TO 'gs://acme-co-backup/db/bank/2017-03-29-nightly' \
 AS OF SYSTEM TIME '-10s' \
@@ -186,7 +186,7 @@ INCREMENTAL FROM 'gs://acme-co-backup/database-bank-2017-03-27-weekly', 'gs://ac
 ### Create incremental backups with revision history
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > BACKUP DATABASE bank \
 TO 'gs://acme-co-backup/database-bank-2017-03-29-nightly' \
 AS OF SYSTEM TIME '-10s' \

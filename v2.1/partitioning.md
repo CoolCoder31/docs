@@ -89,12 +89,13 @@ For instance, consider the database of a global online learning portal that has 
 {% include copy-clipboard.html %}
 ~~~ sql
 > CREATE TABLE students (
-    id SERIAL,
-    name STRING,
-    email STRING,
-    country STRING,
-    expected_graduation_date DATE,   
-    PRIMARY KEY (country, id));
+  id SERIAL,
+  name STRING,
+  email STRING,
+  country STRING,
+  expected_graduation_date DATE,
+  PRIMARY KEY (country, id)
+);
 ~~~
 
 **Primary Key Considerations**
@@ -114,7 +115,7 @@ To ensure uniqueness or fast lookups, create a unique, unpartitioned secondary i
 Indexes can also be partitioned, but are not required to be. Each partition is required to have a name that is unique among all partitions on that table and its indexes. For example, the following `CREATE INDEX` scenario will fail because it reuses the name of a partition of the primary key:
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 CREATE TABLE foo (a STRING PRIMARY KEY, b STRING) PARTITION BY LIST (a) (
     bar VALUES IN ('bar'),
     default VALUES IN (DEFAULT)
@@ -122,7 +123,7 @@ CREATE TABLE foo (a STRING PRIMARY KEY, b STRING) PARTITION BY LIST (a) (
 ~~~
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 CREATE INDEX foo_b_idx ON foo (b) PARTITION BY LIST (b) (
     baz VALUES IN ('baz'),
     default VALUES IN (DEFAULT)
@@ -187,7 +188,7 @@ To set the enterprise license, see [Set the Trial or Enterprise License Key](ent
 #### Step 4. Create a table with the appropriate partitions
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > CREATE TABLE students_by_list (
     id SERIAL,
     name STRING,
@@ -294,7 +295,7 @@ $ cockroach start --insecure \
 #### Step 4. Create a table with the appropriate partitions
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > CREATE TABLE students_by_range (
    id SERIAL,
    name STRING,
@@ -411,7 +412,7 @@ To set the enterprise license, see [Set the Trial or Enterprise License Key](ent
 #### Step 4. Create a table with the appropriate partitions
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > CREATE TABLE students (
     id SERIAL,
     name STRING,
@@ -514,7 +515,7 @@ Time: 11.586626ms
 Consider the partitioned table of students of RoachLearn. Suppose the table has been partitioned on range to store the current students on fast and expensive storage devices (example: SSD) and store the data of the graduated students on slower, cheaper storage devices(example: HDD). Now suppose we want to change the date after which the students will be considered current to `2018-08-15`. We can achieve this by using the [`PARTITION BY`](partition-by.html) subcommand of the [`ALTER TABLE`](alter-table.html) command.
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > ALTER TABLE students_by_range PARTITION BY RANGE (expected_graduation_date) (
     PARTITION graduated VALUES FROM (MINVALUE) TO ('2018-08-15'),
     PARTITION current VALUES FROM ('2018-08-15') TO (MAXVALUE));
@@ -525,7 +526,7 @@ Consider the partitioned table of students of RoachLearn. Suppose the table has 
 You can remove the partitions on a table by using the [`PARTITION BY NOTHING`](partition-by.html) syntax:
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > ALTER TABLE students PARTITION BY NOTHING;
 ~~~
 

@@ -20,14 +20,14 @@ If you have an [Enterprise license](enterprise-licensing.html), you can use the 
 In most cases, it's recommended to use the [`BACKUP`](backup.html) command to take full nightly backups of each database in your cluster:
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > BACKUP DATABASE <database_name> TO '<full_backup_location>';
 ~~~
 
 If it's ever necessary, you can then use the [`RESTORE`](restore.html) command to restore a database:
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > RESTORE DATABASE <database_name> FROM '<full_backup_location>';
 ~~~
 
@@ -38,14 +38,14 @@ If a database increases to a size where it is no longer feasible to take nightly
 Periodically run the [`BACKUP`](backup.html) command to take a full backup of your database:
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > BACKUP DATABASE <database_name> TO '<full_backup_location>';
 ~~~
 
 Then create nightly incremental backups based off of the full backups you've already created.
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > BACKUP DATABASE <database_name> TO 'incremental_backup_location'
 INCREMENTAL FROM '<full_backup_location>', '<list_of_previous_incremental_backup_location>';
 ~~~
@@ -53,7 +53,7 @@ INCREMENTAL FROM '<full_backup_location>', '<list_of_previous_incremental_backup
 If it's ever necessary, you can then use the [`RESTORE`](restore.html) command to restore a database:
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > RESTORE <database_name> FROM '<full_backup_location>', '<list_of_previous_incremental_backup_locations>';
 ~~~
 

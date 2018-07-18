@@ -68,7 +68,7 @@ This example uses S3. For a complete list of the types of cloud storage [`IMPORT
 To import the PostgreSQL dump file, issue an `IMPORT` statement like the one below.
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > IMPORT TABLE employees (
     emp_no INT PRIMARY KEY,
     birth_date DATE NOT NULL,
@@ -125,7 +125,7 @@ To load the data from local files, you have 2 options:
 If you decide to load the data from the `extern` subdirectory, you will need to use [`IMPORT`'s `nodelocal` URL scheme](import.html#import-file-urls) as shown below.
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > IMPORT TABLE employees (
     emp_no INT PRIMARY KEY,
     birth_date DATE NOT NULL,
@@ -162,7 +162,7 @@ You will need to look at the dump file and translate the MySQL [`CREATE TABLE`](
 This example uses S3. For a complete list of the types of cloud storage `IMPORT` can pull from, see [Import File URLs](import.html#import-file-urls).
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > IMPORT TABLE employees (
     emp_no INT PRIMARY KEY,
     birth_date DATE NOT NULL,
@@ -194,7 +194,7 @@ To load the data from local files, you have 2 options:
 If you decide to load the data from the `extern` subdirectory, you will need to use [`IMPORT`'s `nodelocal` URL scheme](import.html#import-file-urls) as shown below.
 
 {% include copy-clipboard.html %}
-~~~ sql
+~~~ sql?nofmt
 > IMPORT TABLE employees (
     emp_no INT PRIMARY KEY,
     birth_date DATE NOT NULL,
